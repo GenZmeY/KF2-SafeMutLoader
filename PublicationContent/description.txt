@@ -1,0 +1,8 @@
+[h1]KF2-SafeMutLoader[/h1]
+
+[h1]Description[/h1]
+[b]Mutator(s):[/b] SML.Mut
+
+[h1]Author[/h1]
+[url=https://github.com/GenZmeY]GenZmeY[/url]
+
