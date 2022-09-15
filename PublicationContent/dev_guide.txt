@@ -1,0 +1,176 @@
+[SML] Developer Guide
+
+[b]SML compatible mutator development guide[/b]
+
+Mutator template
+
+You can use this template to make the mutator compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2863226847]SML[/url].
+Here I will use "[b]Example[/b]" as mutator name. Replace it with yours.
+
+[b]ExampleMut.uc[/b]
+[code]
+class ExampleMut extends KFMutator;
+	
+var private Example Example;
+
+public simulated function bool SafeDestroy()
+{
+	return (bPendingDelete || bDeleteMe || Destroy());
+}
+
+public event PreBeginPlay()
+{
+	Super.PreBeginPlay();
+	
+	if (WorldInfo.NetMode == NM_Client) return;
+	
+	foreach WorldInfo.DynamicActors(class'Example', Example)
+	{
+		break;
+	}
+	
+	if (Example == None)
+	{
+		Example = WorldInfo.Spawn(class'Example');
+	}
+	
+	if (Example == None)
+	{
+		`Log("Example: FATAL: Can't Spawn 'Example'");
+		SafeDestroy();
+	}
+}
+
+public function AddMutator(Mutator Mut)
+{
+	if (Mut == Self) return;
+	
+	if (Mut.Class == Class)
+		Mut.Destroy();
+	else
+		Super.AddMutator(Mut);
+}
+
+public function NotifyLogin(Controller C)
+{
+	Example.NotifyLogin(C);
+	
+	Super.NotifyLogin(C);
+}
+
+public function NotifyLogout(Controller C)
+{
+	Example.NotifyLogout(C);
+	
+	Super.NotifyLogout(C);
+}
+
+static function String GetLocalString(optional int Switch, optional PlayerReplicationInfo RelatedPRI_1, optional PlayerReplicationInfo RelatedPRI_2)
+{
+	return String(class'Example');
+}
+
+defaultproperties
+{
+
+}
+[/code]
+
+[b]Example.uc[/b]
+[code]
+class Example extends Info;
+
+public event PreBeginPlay()
+{
+	Super.PreBeginPlay();
+
+	// do some initialization here
+}
+
+public event PostBeginPlay()
+{
+	Super.PostBeginPlay();
+
+	// do some initialization here
+}
+
+public function NotifyLogin(Controller C)
+{
+	// Do what you need here when the player log in
+}
+
+public function NotifyLogout(Controller C)
+{
+	// Do what you need here when the player log out
+}
+
+public simulated function vector GetTargetLocation(optional actor RequestedBy, optional bool bRequestAlternateLoc)
+{
+	local Controller C;
+	C = Controller(RequestedBy);
+	if (C != None) { bRequestAlternateLoc ? NotifyLogout(C) : NotifyLogin(C); }
+	return Super.GetTargetLocation(RequestedBy, bRequestAlternateLoc);
+}
+
+defaultproperties
+{
+
+}
+[/code]
+
+That's all. You can create new classes and add any code to [b]Example.uc[/b], but refrain from implementing anything else in [b]ExampleMut.uc[/b]
+
+Limitations
+
+❌ Can't make ranked game mode this way;
+❌ [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2863226847]SML[/url] can only emulate [url=https://github.com/GenZmeY/KF2-Dev-Scripts/blob/9553ac0b31c729c27e9cd0a460ab5a7bae2fd799/Engine/Classes/Mutator.uc#L147]NotifyLogin(...)[/url] and [url=https://github.com/GenZmeY/KF2-Dev-Scripts/blob/9553ac0b31c729c27e9cd0a460ab5a7bae2fd799/Engine/Classes/Mutator.uc#L141]NotifyLogout(...)[/url], other functions of the [url=https://github.com/GenZmeY/KF2-Dev-Scripts/blob/9553ac0b31c729c27e9cd0a460ab5a7bae2fd799/Engine/Classes/Mutator.uc]Mutator[/url] and [url=https://github.com/GenZmeY/KF2-Dev-Scripts/blob/9553ac0b31c729c27e9cd0a460ab5a7bae2fd799/Engine/Classes/KFMutator.uc]KFMutator[/url] classes are not supported - look for workarounds in this case.
+
+[Tips] Alternative to the InitMutator(...) function
+
+Even though the [url=https://github.com/GenZmeY/KF2-Dev-Scripts/blob/9553ac0b31c729c27e9cd0a460ab5a7bae2fd799/KFGame/Classes/KFMutator.uc#L22]InitMutator(...)[/url] function is not supported, you can still parse the startup string if you need to:
+Refer to [url=https://github.com/GenZmeY/KF2-Dev-Scripts/blob/9553ac0b31c729c27e9cd0a460ab5a7bae2fd799/Engine/Classes/GameInfo.uc#L209]WorldInfo.Game.ServerOptions[/url] or [url=https://github.com/GenZmeY/KF2-Dev-Scripts/blob/9553ac0b31c729c27e9cd0a460ab5a7bae2fd799/Engine/Classes/WorldInfo.uc#L1315]WorldInfo.GetLocalURL()[/url] and get the option from there. It's best to do this in [b]PreBeginPlay()[/b] or [b]PostBeginPlay()[/b] of your [b]Example.uc[/b] (as well as other initializations).
+
+[Tips] XP for custom Zeds / Weapons
+
+While custom weapons and zeds won't make your server unranked, the [url=https://github.com/GenZmeY/KF2-Dev-Scripts/blob/513c60070e2b700b5c311843754ed0e39b55a14e/KFGame/Classes/KFGameInfo.uc#L2594]ValidateForXP(...)[/url] function will not allow you to gain experience if it detects a custom zed or custom damage type.
+
+To work around this, don't use custom damage types on custom weapons, or replace information in [url=https://github.com/GenZmeY/KF2-Dev-Scripts/blob/513c60070e2b700b5c311843754ed0e39b55a14e/KFGame/Classes/KFPawn.uc#L182]DamageHistory[/url] before it gets into the [url=https://github.com/GenZmeY/KF2-Dev-Scripts/blob/513c60070e2b700b5c311843754ed0e39b55a14e/KFGame/Classes/KFGameInfo.uc#L2489]DistributeMoneyAndXP(...)[/url] function.
+
+[Tips] Replacing base classes to bypass restrictions
+
+In some cases, changing the base classes of the game can help. For example, we cannot make [b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2379769040]TAWOD[/url][/b] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2863226847]SML[/url] compatible because the [url=https://github.com/GenZmeY/KF2-TAWOD/blob/master/TAWOD/Classes/TAWODMut.uc#L19]PreventDeath(...)[/url] function is not supported. But this can be bypassed by replacing the player's Pawn base class with custom Pawn class:
+[code]
+WorldInfo.Game.DefaultPawnClass = class'ExamplePawn_Human';
+[/code]
+(This can be done in [b]PostBeginPlay()[/b])
+
+And now we can implement all weapons drop in [b]ExamplePawn_Human.uc[/b]:
+[code]
+class TAWODPawn_Human extends KFPawn_Human;
+
+public function ThrowActiveWeapon(optional bool bDestroyWeap)
+{
+	local KFWeapon KFW;
+
+	if (Role < ROLE_Authority)
+	{
+		return;
+	}
+
+	if (Health <= 0)
+	{
+		if (InvManager != None)
+			foreach KFP.InvManager.InventoryActors(class'KFWeapon', KFW)
+				if (KFW != None && KFW.bDropOnDeath && KFW.CanThrow())
+					KFP.TossInventory(KFW);
+	}
+	else
+	{
+		super.ThrowActiveWeapon(bDestroyWeap);
+	}
+}
+[/code]
+
+[Tips] Cloning DLC weapons
+
+🛠[b] <UNDER_CONSTRUCTION> [/b]🛠

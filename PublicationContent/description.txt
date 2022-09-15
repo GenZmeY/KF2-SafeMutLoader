@@ -1,8 +1,41 @@
-[h1]KF2-SafeMutLoader[/h1]
+[h1][b]Use non-whitelisted mutators and stay ranked[/b][/h1]
 
-[h1]Description[/h1]
-[b]Mutator(s):[/b] SML.Mut
+[h1]Limitations[/h1]
+⚠️ SML only has an effect when compatible mutators are used. If you use incompatible mutators you will lose ranked status.
+⚠️ SML incompatible with [b][url=https://github.com/th3-z/kf2-acpp]AccessPlus[/url][/b]. If you need something from there, implement it as an SML compatible mutator using [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2863210737]developer guide[/url].
 
-[h1]Author[/h1]
-[url=https://github.com/GenZmeY]GenZmeY[/url]
+[h1]Compatible mutators[/h1]
+🟢 Any whitelisted mutators
+🟢 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2848836389]Admin Auto Login[/url]
+🟢 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899]Controlled Vote Collector[/url]
+🟡 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2830826239]Custom Trader Inventory[/url]
+[list]
+[*]Purchasing a DLC weapon will unrank the server if currently there is no player with the purchased DLC. This can be bypassed by replacing all DLC weapons with their clones.
+[*]Since [url=https://wiki.killingfloor2.com/index.php?title=Update_1133_(Killing_Floor_2)]KF2 v1133[/url] the content preload causes the server to unrank for some reason. Disable it in CTI settings ([b]bPreloadContent=False[/b]) to stay ranked.
+[/list]
+🟡 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2811290931]Zed Spawner[/url]
+[list]
+[*]Since [url=https://wiki.killingfloor2.com/index.php?title=Update_1133_(Killing_Floor_2)]KF2 v1133[/url] zed preload causes the server to unrank for some reason (current version of ZedSpawner does not allow you to disable preload, but I will add it later).
+[/list]
+🟢 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2521826524]Yet Another Scoreboard[/url]
 
+[h1]Developer guide[/h1]
+If you want to make your mutator compatible with SML use this:
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2863210737]Developer Guide[/url]
+
+If you make a public mutator with SML support, I'd be happy if you tell me about it so I can add it to the list above.
+
+[h1]Usage[/h1]
+[code]
+?Mutator=SML.Mut,AAL.AALMut,YAS.YASMut,CTI.CTIMut,CVC.CVCMut,ZedSpawner.ZedSpawnerMut
+[/code]
+(replace the map and add/remove [b]compatible[/b] mutators you need)
+
+❗️ SML must be first in the mutators list or it won't work.
+❗️ SML is a server-side mutator, clients never download it. Therefore, no one will know about SML if you don’t tell yourself. You can also accidentally give it to the whole world if you use a redirect and share the folder where it's located. Be careful about this.
+❗️ I also really hope you don't report this to TWI. If I find this blocked, I will probably be upset in the world and in the people with whom I shared this :(
+
+[h1]Sources[/h1]
+Right now, I don't want to post SML sources because I'm planning to submit several whitelist requests for my mutators. TWI will probably look at my github (At least I hope so) and I don't want them to see SML.
+
+But later I will post it under the GNU GPLv3.
