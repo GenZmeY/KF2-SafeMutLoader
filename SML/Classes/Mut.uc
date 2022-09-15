@@ -11,11 +11,7 @@ public function PreBeginPlay()
 {
 	Super.PreBeginPlay();
 	
-	LogLevel = SML.default.LogLevel;
-	if (LogLevel == LL_WrongLevel)
-	{
-		LogLevel = LL_Info;
-	}
+	LogLevel = SML.static.GetLogLevel();
 
 	`Log_Trace();
 	
@@ -85,12 +81,12 @@ private function ModifyLoad()
 			++Index;
 		}
 	}
+	SML.static.StaticSaveConfig();
 	
 	JoinArray(Mutators, MutatorsRaw);
 	LoadURL $= (Subst(OptMut) $ MutatorsRaw);
 	if (SML.static.WantsToSpawn())
 	{
-		SML.static.StaticSaveConfig();
 		LoadURL $= (Subst(OptAC) $ SML.static.GetName());
 	}
 

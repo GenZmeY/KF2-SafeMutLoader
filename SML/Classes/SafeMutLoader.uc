@@ -2,18 +2,14 @@ class SafeMutLoader extends KFAccessControl
 	config(SML);
 
 var private Array<Actor>         ServerActors;
-var public  config E_LogLevel    LogLevel;
+var private config E_LogLevel    LogLevel;
 var private config Array<String> Mutators;
 
 public function PreBeginPlay()
 {
 	`Log_Trace();
 	
-	if (LogLevel == LL_WrongLevel)
-	{
-		LogLevel = LL_Info;
-		StaticSaveConfig();
-	}
+	LogLevel = GetLogLevel();
 	
 	LoadActors();
 	
@@ -127,6 +123,17 @@ public function OnClientConnectionClose(Player ClientConnection)
 	}
 	
 	Super.OnClientConnectionClose(ClientConnection);
+}
+
+public static function E_LogLevel GetLogLevel()
+{
+	if (default.LogLevel == LL_WrongLevel)
+	{
+		default.LogLevel = LL_Info;
+		StaticSaveConfig();
+	}
+	
+	return default.LogLevel;
 }
 
 private static function class<Actor> GetMutReplacement(class<Mutator> MutClass)
