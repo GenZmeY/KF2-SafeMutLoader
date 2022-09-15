@@ -29,7 +29,7 @@ If you make a public mutator with SML support, I'd be happy if you tell me about
 [code]
 ?Mutator=SML.Mut,AAL.AALMut,YAS.YASMut,CTI.CTIMut,CVC.CVCMut,ZedSpawner.ZedSpawnerMut
 [/code]
-(replace the map and add/remove [b]compatible[/b] mutators you need)
+(add/remove [b]compatible[/b] mutators you need)
 
 ❗️ SML must be first in the mutators list or it won't work.
 ❗️ SML is a server-side mutator, clients never download it. Therefore, no one will know about SML if you don’t tell yourself. You can also accidentally give it to the whole world if you use a redirect and share the folder where it's located. Be careful about this.
