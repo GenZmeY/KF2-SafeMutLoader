@@ -1,8 +1,20 @@
 [h1][b]Use non-whitelisted mutators and stay ranked[/b][/h1]
 
-[h1]Limitations[/h1]
-⚠️ SML only has an effect when compatible mutators are used. If you use incompatible mutators you will lose ranked status.
-⚠️ SML incompatible with [b][url=https://github.com/th3-z/kf2-acpp]AccessPlus[/url][/b]. If you need something from there, implement it as an SML compatible mutator using [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2863210737]developer guide[/url].
+[h1]Usage (server only)[/h1]
+[olist]
+[*]Subscribe your server to this.
+[*]Add [b]SML.Mut[/b] [u]first[/u] to your list of mutators, example:
+[code]
+?Mutator=SML.Mut,AAL.AALMut,YAS.YASMut,CTI.CTIMut,CVC.CVCMut,ZedSpawner.ZedSpawnerMut
+[/code]
+(add/remove [b]compatible[/b] mutators you need)
+[/olist]
+
+⚠️ Doesn't work in single player
+⚠️ SML must be first in the mutators list or it won't work.
+⚠️ SML only has an effect when [b]compatible[/b] mutators are used (the list below). If you use incompatible mutators you will lose ranked status.
+⚠️ SML is a server-side mutator, clients never download it. Therefore, no one will know about you using SML if you don’t tell yourself (or if you share with the whole world the BrewedPC folder where you put the SML, lol).
+⚠️ SML is incompatible with [url=https://github.com/th3-z/kf2-acpp]AccessPlus[/url] and other mods based on it. If you need something from there, implement it as an SML compatible mutator using [url=https://github.com/GenZmeY/KF2-SafeMutLoader/blob/master/DEV.md]developer guide[/url].
 
 [h1]Compatible mutators[/h1]
 🟢 Any whitelisted mutators
@@ -15,27 +27,9 @@
 [/list]
 🟡 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2811290931]Zed Spawner[/url]
 [list]
-[*]Since [url=https://wiki.killingfloor2.com/index.php?title=Update_1133_(Killing_Floor_2)]KF2 v1133[/url] zed preload causes the server to unrank for some reason (current version of ZedSpawner does not allow you to disable preload, but I will add it later).
+[*]Since [url=https://wiki.killingfloor2.com/index.php?title=Update_1133_(Killing_Floor_2)]KF2 v1133[/url] zed preload causes the server to unrank for some reason. Disable it in ZedSpawner settings ([b]bPreloadContentServer=False[/b]) to stay ranked.
 [/list]
 🟢 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2521826524]Yet Another Scoreboard[/url]
 
-[h1]Developer guide[/h1]
-If you want to make your mutator compatible with SML use this:
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2863210737]Developer Guide[/url]
-
-If you make a public mutator with SML support, I'd be happy if you tell me about it so I can add it to the list above.
-
-[h1]Usage[/h1]
-[code]
-?Mutator=SML.Mut,AAL.AALMut,YAS.YASMut,CTI.CTIMut,CVC.CVCMut,ZedSpawner.ZedSpawnerMut
-[/code]
-(add/remove [b]compatible[/b] mutators you need)
-
-❗️ SML must be first in the mutators list or it won't work.
-❗️ SML is a server-side mutator, clients never download it. Therefore, no one will know about SML if you don’t tell yourself. You can also accidentally give it to the whole world if you use a redirect and share the folder where it's located. Be careful about this.
-❗️ I also really hope you don't report this to TWI. If I find this blocked, I will probably be upset in the world and in the people with whom I shared this :(
-
 [h1]Sources[/h1]
-Right now, I don't want to post SML sources because I'm planning to submit several whitelist requests for my mutators. TWI will probably look at my github (At least I hope so) and I don't want them to see SML.
-
-But later I will post it under the GNU GPLv3.
+[url=https://github.com/GenZmeY/KF2-SafeMutLoader]https://github.com/GenZmeY/KF2-SafeMutLoader[/url] [b](GNU GPLv3)[/b]
