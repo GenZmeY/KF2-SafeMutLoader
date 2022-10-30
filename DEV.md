@@ -142,7 +142,7 @@ WorldInfo.Game.DefaultPawnClass = class'ExamplePawn_Human'; // Put this to `Post
 
 And now we can implement all weapons drop in `ExamplePawn_Human.uc` (create one):
 ```unrealscript
-class TAWODPawn_Human extends KFPawn_Human;
+class ExamplePawn_Human extends KFPawn_Human;
 
 public function ThrowWeaponOnDeath()
 {
