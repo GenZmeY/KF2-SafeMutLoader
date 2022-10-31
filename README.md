@@ -1,7 +1,5 @@
 # KF2-SafeMutLoader
-I've [submitted whitelist requests](https://forums.tripwireinteractive.com/index.php?threads/whitelisting-mods-and-mutators.120340/page-3#post-2353663) but Tripware won't do anything about it...  
-I think mods can save this dying game and that's why I'm posting this.  
-**With SML, you can use non-whitelisted mutators and still be ranked.**  
+Use non-whitelisted mutators and stay ranked.  
 
 # Disclaimer
 **SML only uses KF2 and UnrealScript features, it doesn't change game executables or RAM or anything like that, so it's not a hack and it doesn't violate [Killing Floor 2 EULA](https://store.steampowered.com/eula/232090_eula_0).**  
