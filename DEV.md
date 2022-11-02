@@ -148,10 +148,11 @@ public function ThrowWeaponOnDeath()
 {
 	local KFWeapon KFW;
 	
-	if (InvManager != None)
-		foreach InvManager.InventoryActors(class'KFWeapon', KFW)
-			if (KFW != None && KFW.bDropOnDeath && KFW.CanThrow())
-				KFP.TossInventory(KFW);
+	if (InvManager == None) return;
+	
+	foreach InvManager.InventoryActors(class'KFWeapon', KFW)
+		if (KFW.bDropOnDeath && KFW.CanThrow())
+			KFP.TossInventory(KFW);
 }
 ```
 
