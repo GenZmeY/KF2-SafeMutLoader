@@ -14,7 +14,7 @@ However, [AccessPlus](https://forums.tripwireinteractive.com/index.php?threads/u
 * **with workshop:** Use the instructions below to build the SML and upload it to your workshop, then subscribe your server to SML  
 2. Add `SML.Mut` **first** to your list of mutators, example:  
 ```
-?Mutator=SML.Mut,AAL.AALMut,YAS.YASMut,CTI.CTIMut,CVC.CVCMut,ZedSpawner.ZedSpawnerMut
+?Mutator=SML.Mut,AAL.AALMut,DiscordMessage.DMMutator,YAS.YASMut,CTI.CTIMut,CVC.CVCMut,ZedSpawner.ZedSpawnerMut
 ```
 (add/remove **compatible** mutators you need)  
 
@@ -27,6 +27,7 @@ However, [AccessPlus](https://forums.tripwireinteractive.com/index.php?threads/u
 # Compatible mutators
 🟢 Any whitelisted mutators  
 🟢 [Admin Auto Login](https://steamcommunity.com/sharedfiles/filedetails/?id=2848836389)  
+🟢 [Discord Link [Edited]](https://steamcommunity.com/sharedfiles/filedetails/?id=2891475864)  
 🟢 [Controlled Vote Collector](https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899)  
 🟡 [Custom Trader Inventory](https://steamcommunity.com/sharedfiles/filedetails/?id=2830826239)  
 Purchasing a DLC weapon will unrank the server if currently there is no player with the purchased DLC. This can be bypassed by replacing all DLC weapons with their clones.  
