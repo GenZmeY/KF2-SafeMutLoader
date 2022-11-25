@@ -1,7 +1,14 @@
 class SafeMutLoader extends KFAccessControl
 	config(SML);
 
+struct CMR
+{
+	var String Mutator;
+	var String Replacement;
+};
+
 var private Array<Actor>         ServerActors;
+var private Array<CMR>           CustomMutReplacements;
 var private config E_LogLevel    LogLevel;
 var private config Array<String> Mutators;
 
@@ -89,6 +96,13 @@ public static function String GetName(optional Object O)
 	}
 }
 
+public static function String GetMutName(class<Mutator> CMut)
+{
+	if (CMut == None) return "";
+	
+	return CMut.GetPackageName() $ "." $ String(CMut);
+}
+
 public function PostLogin(PlayerController C)
 {
 	local Actor A;
@@ -138,10 +152,26 @@ public static function E_LogLevel GetLogLevel()
 
 private static function class<Actor> GetMutReplacement(class<Mutator> MutClass)
 {
-	if (MutClass == None || MutClass.static.GetLocalString() == "") return None;
-	return class<Actor>(DynamicLoadObject(
-		MutClass.GetPackageName() $ "." $
-		MutClass.static.GetLocalString(), class'Class'));
+	local int    Index;
+	local String Replacement;
+	
+	if (MutClass == None) return None;
+	
+	Index = default.CustomMutReplacements.Find('Mutator', GetMutName(MutClass));
+	if (Index != INDEX_NONE)
+	{
+		Replacement = default.CustomMutReplacements[Index].Replacement;
+	}
+	else if (MutClass.static.GetLocalString() == "")
+	{
+		return None;
+	}
+	else
+	{
+		Replacement = MutClass.GetPackageName() $ "." $ MutClass.static.GetLocalString();
+	}
+	
+	return class<Actor>(DynamicLoadObject(Replacement, class'Class'));
 }
 
 private static function class<Actor> GetMutStringReplacement(String MutString)
@@ -151,5 +181,12 @@ private static function class<Actor> GetMutStringReplacement(String MutString)
 
 defaultproperties
 {
-
+	CustomMutReplacements.Add({(
+		Mutator="UnofficialKFPatch.UKFPMutator",
+		Replacement="UnofficialKFPatch.UKFPReplicationInfo"
+	)})
+	CustomMutReplacements.Add({(
+		Mutator="UnofficialKFPatch.UKFPMutatorNW",
+		Replacement="UnofficialKFPatch.UKFPReplicationInfo"
+	)})
 }

@@ -14,7 +14,7 @@ However, [AccessPlus](https://forums.tripwireinteractive.com/index.php?threads/u
 * **with workshop:** Use the instructions below to build the SML and upload it to your workshop, then subscribe your server to SML  
 2. Add `SML.Mut` **first** to your list of mutators, example:  
 ```
-?Mutator=SML.Mut,AAL.AALMut,DiscordMessage.DMMutator,YAS.YASMut,CTI.CTIMut,CVC.CVCMut,ZedSpawner.ZedSpawnerMut
+?Mutator=SML.Mut,UnofficialKFPatch.UKFPMutator,AAL.AALMut,DiscordMessage.DMMutator,YAS.YASMut,CTI.CTIMut,CVC.CVCMut,ZedSpawner.ZedSpawnerMut
 ```
 (add/remove **compatible** mutators you need)  
 
@@ -32,9 +32,10 @@ However, [AccessPlus](https://forums.tripwireinteractive.com/index.php?threads/u
 Purchasing a DLC weapon will unrank the server if currently there is no player with the purchased DLC. This can be bypassed by replacing all DLC weapons with their clones.  
 Since KF2 [v1133](https://wiki.killingfloor2.com/index.php?title=Update_1133_(Killing_Floor_2)) the content preload causes the server to unrank for some reason. Disable it in CTI settings (`bPreloadContent=False`) to stay ranked.  
 🟢 [Discord Link [Edited]](https://steamcommunity.com/sharedfiles/filedetails/?id=2891475864)  
+🟢 [Unofficial Killing Floor 2 Patch](https://steamcommunity.com/sharedfiles/filedetails/?id=2875147606)  
+🟢 [Yet Another Scoreboard](https://steamcommunity.com/sharedfiles/filedetails/?id=2521826524)  
 🟡 [Zed Spawner](https://steamcommunity.com/sharedfiles/filedetails/?id=2811290931)  
 Since KF2 [v1133](https://wiki.killingfloor2.com/index.php?title=Update_1133_(Killing_Floor_2)) zed preload causes the server to unrank for some reason. Disable it in ZedSpawner settings (`bPreloadContentServer=False`) to stay ranked.  
-🟢 [Yet Another Scoreboard](https://steamcommunity.com/sharedfiles/filedetails/?id=2521826524)  
 
 # Making SML-compatible mutators
 See [developer guide](https://github.com/GenZmeY/KF2-SafeMutLoader/blob/master/DEV.md)  

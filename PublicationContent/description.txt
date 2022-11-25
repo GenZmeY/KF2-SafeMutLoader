@@ -5,7 +5,7 @@
 [*]Subscribe your server to this.
 [*]Add [b]SML.Mut[/b] [u]first[/u] to your list of mutators, example:
 [code]
-?Mutator=SML.Mut,AAL.AALMut,YAS.YASMut,CTI.CTIMut,CVC.CVCMut,ZedSpawner.ZedSpawnerMut
+?Mutator=SML.Mut,UnofficialKFPatch.UKFPMutator,AAL.AALMut,DiscordMessage.DMMutator,YAS.YASMut,CTI.CTIMut,CVC.CVCMut,ZedSpawner.ZedSpawnerMut
 [/code]
 (add/remove [b]compatible[/b] mutators you need)
 [/olist]
@@ -25,11 +25,14 @@
 [*]Purchasing a DLC weapon will unrank the server if currently there is no player with the purchased DLC. This can be bypassed by replacing all DLC weapons with their clones.
 [*]Since [url=https://wiki.killingfloor2.com/index.php?title=Update_1133_(Killing_Floor_2)]KF2 v1133[/url] the content preload causes the server to unrank for some reason. Disable it in CTI settings ([b]bPreloadContent=False[/b]) to stay ranked.
 [/list]
+🟢 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2891475864]Discord Link [Edited][/url]
+🟢 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2875147606]Unofficial Killing Floor 2 Patch[/url]
+🟢 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2521826524]Yet Another Scoreboard[/url]
 🟡 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2811290931]Zed Spawner[/url]
 [list]
 [*]Since [url=https://wiki.killingfloor2.com/index.php?title=Update_1133_(Killing_Floor_2)]KF2 v1133[/url] zed preload causes the server to unrank for some reason. Disable it in ZedSpawner settings ([b]bPreloadContentServer=False[/b]) to stay ranked.
 [/list]
-🟢 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2521826524]Yet Another Scoreboard[/url]
+
 
 [h1]Sources[/h1]
 [url=https://github.com/GenZmeY/KF2-SafeMutLoader]https://github.com/GenZmeY/KF2-SafeMutLoader[/url] [b](GNU GPLv3)[/b]
