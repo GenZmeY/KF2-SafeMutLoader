@@ -127,7 +127,7 @@ That's all. You can create new classes and add any code to `Example.uc` (yay!), 
 # Tips
 ## Alternative to the InitMutator(...) function
 Even though the [`InitMutator(...)`](https://github.com/GenZmeY/KF2-Dev-Scripts/blob/23d1ca3a9a2f62692741e77039f03fe0a913be1d/KFGame/Classes/KFMutator.uc#L22) function is not supported, you can still parse the startup string if you need to:  
-Refer to [`WorldInfo.Game.ServerOptions`](https://github.com/GenZmeY/KF2-Dev-Scripts/blob/23d1ca3a9a2f62692741e77039f03fe0a913be1d/Engine/Classes/GameInfo.uc#L209) or [`WorldInfo.GetLocalURL()`](https://github.com/GenZmeY/KF2-Dev-Scripts/blob/23d1ca3a9a2f62692741e77039f03fe0a913be1d/Engine/Classes/WorldInfo.uc#L1315) and get the option from there. It's best to do this in `PreBeginPlay()` or `PostBeginPlay()` of your `Example.uc` (as well as other initializations).  
+Refer to [`WorldInfo.GetLocalURL()`](https://github.com/GenZmeY/KF2-Dev-Scripts/blob/23d1ca3a9a2f62692741e77039f03fe0a913be1d/Engine/Classes/WorldInfo.uc#L1315) and get the option from there. It's best to do this in `PreBeginPlay()` or `PostBeginPlay()` of your `Example.uc` (as well as other initializations).  
 
 ## XP for custom Zeds / Weapons
 While custom weapons and zeds won't make your server unranked, the [`ValidateForXP(...)`](https://github.com/GenZmeY/KF2-Dev-Scripts/blob/23d1ca3a9a2f62692741e77039f03fe0a913be1d/KFGame/Classes/KFGameInfo.uc#L2564) function will not allow you to gain experience if it detects a custom zed or custom damage type.  
