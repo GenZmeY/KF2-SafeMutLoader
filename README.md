@@ -11,7 +11,7 @@ However, [AccessPlus](https://forums.tripwireinteractive.com/index.php?threads/u
 # Usage (server only)
 1. Add SML to your server. There are two ways:  
 * **without workshop:** download `SML.u` from [releases](https://github.com/GenZmeY/KF2-SafeMutLoader/releases) and put it to `KFGame/BrewedPC`  
-* **with workshop:** Use the instructions below to build the SML and upload it to your workshop, then subscribe your server to SML  
+* **with workshop:** Use the [instructions below](https://github.com/GenZmeY/KF2-SafeMutLoader#build--upload) to build the SML and upload it to your workshop, then subscribe your server to SML  
 2. Add `SML.Mut` **first** to your list of mutators, example:  
 ```
 ?Mutator=SML.Mut,UnofficialKFPatch.UKFPMutator,AAL.AALMut,DiscordMessage.DMMutator,YAS.YASMut,CTI.CTIMut,CVC.CVCMut,ZedSpawner.ZedSpawnerMut
