@@ -46,7 +46,7 @@ public function AddMutator(Mutator Mut)
 	if (Mut == Self) return;
 	
 	if (Mut.Class == Class)
-		Mut.Destroy();
+		ExampleMut(Mut).SafeDestroy();
 	else
 		Super.AddMutator(Mut);
 }
