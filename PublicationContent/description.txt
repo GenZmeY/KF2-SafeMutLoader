@@ -26,6 +26,7 @@
 [*]Since [url=https://wiki.killingfloor2.com/index.php?title=Update_1133_(Killing_Floor_2)]KF2 v1133[/url] the content preload causes the server to unrank for some reason. Disable it in CTI settings ([b]bPreloadContent=False[/b]) to stay ranked.
 [/list]
 🟢 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2891475864]Discord Link [Edited][/url]
+🟢 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2864857909]Looted Trader Inventory[/url]
 🟡 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2875147606]Unofficial Killing Floor 2 Patch[/url]
 [list]
 [*]Settings are not available (config and start parameters are ignored), patch will work with default settings
