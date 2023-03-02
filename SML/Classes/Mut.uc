@@ -32,9 +32,13 @@ public function AddMutator(Mutator Mut)
 	if (CorrectLoadOrder() || Mut == Self) return;
 	
 	if (Mut.Class == Class)
+	{
 		Mut.Destroy();
+	}
 	else
+	{
 		Super.AddMutator(Mut);
+	}
 }
 
 private function bool CorrectLoadOrder()
@@ -53,7 +57,9 @@ private function ModifyLoad()
 	local String MutatorsRaw;
 	local String AccessControlRaw;
 	local Array<String> Mutators;
+	local int PrevServerActorsCount;
 	local int Index;
+	local GameEngine GameEngine;
 	
 	`Log_Trace();
 	
@@ -66,6 +72,7 @@ private function ModifyLoad()
 	LoadURL = Repl(LoadURL, Subst(OptAC)  $ AccessControlRaw, "");
 	
 	SML.static.ClearMutators();
+	SML.static.ClearServerActors();
 	ParseStringIntoArray(MutatorsRaw, Mutators, ",", true);
 
 	Index = 0;
@@ -81,6 +88,35 @@ private function ModifyLoad()
 			++Index;
 		}
 	}
+	
+	GameEngine = GameEngine(Class'Engine'.static.GetEngine());
+	if (GameEngine == None)
+	{
+		`Log_Error("GameEngine is None, skip loading server actors");
+	}
+	else
+	{
+		PrevServerActorsCount = GameEngine.ServerActors.Length;
+		
+		Index = 0;
+		while (Index < GameEngine.ServerActors.Length)
+		{
+			if (SML.static.AddServerActor(GameEngine.ServerActors[Index]))
+			{
+				GameEngine.ServerActors.Remove(Index, 1);
+			}
+			else
+			{
+				++Index;
+			}
+		}
+		
+		if (GameEngine.ServerActors.Length != PrevServerActorsCount)
+		{
+			GameEngine.SaveConfig();
+		}
+	}
+	
 	SML.static.StaticSaveConfig();
 	
 	JoinArray(Mutators, MutatorsRaw);
