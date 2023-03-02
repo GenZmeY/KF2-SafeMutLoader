@@ -33,8 +33,7 @@ Purchasing a DLC weapon will unrank the server if currently there is no player w
 Since KF2 [v1133](https://wiki.killingfloor2.com/index.php?title=Update_1133_(Killing_Floor_2)) the content preload causes the server to unrank for some reason. Disable it in CTI settings (`bPreloadContent=False`) to stay ranked.  
 🟢 [Discord Link [Edited]](https://steamcommunity.com/sharedfiles/filedetails/?id=2891475864)  
 🟢 [Looted Trader Inventory](https://steamcommunity.com/sharedfiles/filedetails/?id=2864857909)  
-🟡 [Unofficial Killing Floor 2 Patch](https://steamcommunity.com/sharedfiles/filedetails/?id=2875147606)  
-Settings are not available (config and start parameters are ignored), patch will work with default settings  
+🟢 [Unofficial Killing Floor 2 Patch](https://steamcommunity.com/sharedfiles/filedetails/?id=2875147606)  
 🟢 [Yet Another Scoreboard](https://steamcommunity.com/sharedfiles/filedetails/?id=2521826524)  
 🟡 [Zed Spawner](https://steamcommunity.com/sharedfiles/filedetails/?id=2811290931)  
 Since KF2 [v1133](https://wiki.killingfloor2.com/index.php?title=Update_1133_(Killing_Floor_2)) zed preload causes the server to unrank for some reason. Disable it in ZedSpawner settings (`bPreloadContentServer=False`) to stay ranked.  
