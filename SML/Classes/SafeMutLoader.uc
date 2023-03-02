@@ -10,6 +10,7 @@ struct CMR
 var private Array<Actor>         ActiveMutators;
 var private Array<Actor>         ActiveServerActors;
 var private Array<CMR>           CustomMutReplacements;
+var private Array<String>        SystemServerActors;
 var private config E_LogLevel    LogLevel;
 var private config Array<String> Mutators;
 var private config Array<String> ServerActors;
@@ -166,6 +167,11 @@ public static function bool AddServerActor(String ServerActor)
 {
 	local class<Actor> ActorClass;
 	
+	if (default.SystemServerActors.Find(ServerActor) != INDEX_NONE)
+	{
+		return false;
+	}
+	
 	ActorClass = class<Actor>(DynamicLoadObject(ServerActor, class'Class'));
 	
 	if (ActorClass == None)
@@ -316,4 +322,6 @@ defaultproperties
 		Mutator="UnofficialKFPatch.UKFPMutatorNW",
 		Replacement="UnofficialKFPatch.UKFPReplicationInfo"
 	)})
+	
+	SystemServerActors.Add("IpDrv.WebServer")
 }
