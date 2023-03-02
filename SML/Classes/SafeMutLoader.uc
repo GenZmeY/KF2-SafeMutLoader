@@ -7,23 +7,70 @@ struct CMR
 	var String Replacement;
 };
 
-var private Array<Actor>         ServerActors;
+var private Array<Actor>         ActiveMutators;
+var private Array<Actor>         ActiveServerActors;
 var private Array<CMR>           CustomMutReplacements;
+var private Array<String>        SystemServerActors;
 var private config E_LogLevel    LogLevel;
 var private config Array<String> Mutators;
+var private config Array<String> ServerActors;
 
 public function PreBeginPlay()
 {
-	`Log_Trace();
-	
 	LogLevel = GetLogLevel();
 	
-	LoadActors();
+	`Log_Trace();
 	
 	Super.PreBeginPlay();
+	
+	LoadMutators();
+	LoadServerActors();
 }
 
-private function LoadActors()
+public function PostBeginPlay()
+{
+	local KFGI_Access KFGIA;
+	
+	`Log_Trace();
+	
+	Super.PreBeginPlay();
+	
+	RestoreServerActors();
+	
+	KFGIA = GetKFGIA();
+	if (KFGIA == None)
+	{
+		`Log_Error("Can't check ranked status");
+	}
+	else if (KFGIA.IsRankedGame())
+	{
+		`Log_Info("Mutators and server actors successfully loaded! Your server is RANKED!");
+	}
+	else
+	{
+		`Log_Warn("Your server is UNRANKED! Check the mutators and server actors you are using. Maybe some of them are incompatible with SML");
+	}
+}
+
+private function KFGI_Access GetKFGIA()
+{
+	local KFGameInfo KFGI;
+	
+	if (WorldInfo == None || WorldInfo.Game == None)
+	{
+		return None;
+	}
+	
+	KFGI = KFGameInfo(WorldInfo.Game);
+	if (KFGI == None)
+	{
+		return None;
+	}
+	
+	return new(KFGI) class'KFGI_Access';
+}
+
+private function LoadMutators()
 {
 	local String         MutString;
 	local class<Mutator> MutClass;
@@ -55,9 +102,94 @@ private function LoadActors()
 			continue;
 		}
 		
-		ServerActors.AddItem(ServerActor);
+		ActiveMutators.AddItem(ServerActor);
 		`Log_Info("Loaded:" @ MutString);
 	}
+}
+
+private function LoadServerActors()
+{
+	local String       ActorString;
+	local class<Actor> ActorClass;
+	local Actor        ServerActor;
+	
+	foreach ServerActors(ActorString)
+	{
+		ActorClass = class<Actor>(DynamicLoadObject(ActorString, class'Class'));
+		if (ActorClass == None)
+		{
+			`Log_Error("Can't load server actor:" @ ActorString);
+			continue;
+		}
+		
+		ServerActor = WorldInfo.Spawn(ActorClass);
+		if (ServerActor == None)
+		{
+			`Log_Error("Can't spawn:" @ ActorString);
+			continue;
+		}
+		
+		ActiveServerActors.AddItem(ServerActor);
+		`Log_Info("Loaded:" @ ActorString);
+	}
+}
+
+private function RestoreServerActors()
+{
+	local GameEngine GameEngine;
+	local String     ActorString;
+	local int        PrevServerActorsCount;
+	
+	GameEngine = GameEngine(Class'Engine'.static.GetEngine());
+	
+	if (GameEngine == None)
+	{
+		`Log_Error("GameEngine is None! Can't restore ServerActors!");
+		return;
+	}
+	
+	PrevServerActorsCount = GameEngine.ServerActors.Length;
+	foreach ServerActors(ActorString)
+	{
+		if (GameEngine.ServerActors.Find(ActorString) != INDEX_NONE)
+		{
+			GameEngine.ServerActors.AddItem(ActorString);
+		}
+	}
+	
+	if (GameEngine.ServerActors.Length != PrevServerActorsCount)
+	{
+		GameEngine.SaveConfig();
+	}
+}
+
+public static function bool AddServerActor(String ServerActor)
+{
+	local class<Actor> ActorClass;
+	
+	if (default.SystemServerActors.Find(ServerActor) != INDEX_NONE)
+	{
+		return false;
+	}
+	
+	ActorClass = class<Actor>(DynamicLoadObject(ServerActor, class'Class'));
+	
+	if (ActorClass == None)
+	{
+		return false;
+	}
+	
+	if (ClassIsChildOf(ActorClass, class'Mutator'))
+	{
+		return false;
+	}
+	
+	if (default.ServerActors.Find(ServerActor) == INDEX_NONE)
+	{
+		default.ServerActors.AddItem(ServerActor);
+	}
+	
+	return true;
 }
 
 public static function bool AddMutator(String MutString)
@@ -77,6 +209,11 @@ public static function bool AddMutator(String MutString)
 public static function ClearMutators()
 {
 	default.Mutators.Length = 0;
+}
+
+public static function ClearServerActors()
+{
+	default.ServerActors.Length = 0;
 }
 
 public static function bool WantsToSpawn()
@@ -111,7 +248,7 @@ public function PostLogin(PlayerController C)
 	
 	if (C != None)
 	{
-		foreach ServerActors(A)
+		foreach ActiveMutators(A)
 		{
 			A.GetTargetLocation(C, false);
 		}
@@ -130,7 +267,7 @@ public function OnClientConnectionClose(Player ClientConnection)
 	C = ClientConnection.Actor;
 	if (C != None)
 	{
-		foreach ServerActors(A)
+		foreach ActiveMutators(A)
 		{
 			A.GetTargetLocation(C, true);
 		}
@@ -189,4 +326,6 @@ defaultproperties
 		Mutator="UnofficialKFPatch.UKFPMutatorNW",
 		Replacement="UnofficialKFPatch.UKFPReplicationInfo"
 	)})
+	
+	SystemServerActors.Add("IpDrv.WebServer")
 }
