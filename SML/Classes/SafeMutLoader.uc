@@ -184,7 +184,11 @@ public static function bool AddServerActor(String ServerActor)
 		return false;
 	}
 	
-	default.ServerActors.AddItem(ServerActor);
+	if (default.ServerActors.Find(ServerActor) == INDEX_NONE)
+	{
+		default.ServerActors.AddItem(ServerActor);
+	}
+	
 	return true;
 }
 
