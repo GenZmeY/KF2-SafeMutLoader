@@ -33,7 +33,7 @@ public function PostBeginPlay()
 	
 	`Log_Trace();
 	
-	Super.PreBeginPlay();
+	Super.PostBeginPlay();
 	
 	RestoreServerActors();
 	
