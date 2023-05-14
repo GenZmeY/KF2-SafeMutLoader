@@ -1,4 +1,11 @@
 # KF2-SafeMutLoader
+
+[![Downloads](https://img.shields.io/github/downloads/GenZmeY/KF2-SafeMutLoader/total)](https://github.com/GenZmeY/KF2-SafeMutLoader/releases)
+[![MegaLinter](https://github.com/GenZmeY/KF2-SafeMutLoader/actions/workflows/mega-linter.yml/badge.svg?branch=master)](https://github.com/GenZmeY/KF2-SafeMutLoader/actions/workflows/mega-linter.yml)
+[![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/GenZmeY/KF2-SafeMutLoader)](https://github.com/GenZmeY/KF2-SafeMutLoader/releases)
+[![GitHub](https://img.shields.io/github/license/GenZmeY/KF2-SafeMutLoader)](LICENSE)
+
+## Description
 Use non-whitelisted mutators and stay ranked.  
 
 ## Disclaimer
