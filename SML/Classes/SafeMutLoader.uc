@@ -18,11 +18,11 @@ var private config Array<String> ServerActors;
 public function PreBeginPlay()
 {
 	LogLevel = GetLogLevel();
-	
+
 	`Log_Trace();
-	
+
 	Super.PreBeginPlay();
-	
+
 	LoadMutators();
 	LoadServerActors();
 }
@@ -30,13 +30,13 @@ public function PreBeginPlay()
 public function PostBeginPlay()
 {
 	local KFGI_Access KFGIA;
-	
+
 	`Log_Trace();
-	
+
 	Super.PostBeginPlay();
-	
+
 	RestoreServerActors();
-	
+
 	KFGIA = GetKFGIA();
 	if (KFGIA == None)
 	{
@@ -55,18 +55,18 @@ public function PostBeginPlay()
 private function KFGI_Access GetKFGIA()
 {
 	local KFGameInfo KFGI;
-	
+
 	if (WorldInfo == None || WorldInfo.Game == None)
 	{
 		return None;
 	}
-	
+
 	KFGI = KFGameInfo(WorldInfo.Game);
 	if (KFGI == None)
 	{
 		return None;
 	}
-	
+
 	return new(KFGI) class'KFGI_Access';
 }
 
@@ -76,9 +76,9 @@ private function LoadMutators()
 	local class<Mutator> MutClass;
 	local class<Actor>   ActClass;
 	local Actor          ServerActor;
-	
+
 	`Log_Trace();
-	
+
 	foreach Mutators(MutString)
 	{
 		MutClass = class<Mutator>(DynamicLoadObject(MutString, class'Class'));
@@ -87,21 +87,21 @@ private function LoadMutators()
 			`Log_Error("Can't load mutator:" @ MutString);
 			continue;
 		}
-		
+
 		ActClass = GetMutReplacement(MutClass);
 		if (ActClass == None)
 		{
 			`Log_Warn("Incompatible:" @ MutString @ "(skip)");
 			continue;
 		}
-		
+
 		ServerActor = WorldInfo.Spawn(ActClass);
 		if (ServerActor == None)
 		{
 			`Log_Error("Can't spawn:" @ MutString);
 			continue;
 		}
-		
+
 		ActiveMutators.AddItem(ServerActor);
 		`Log_Info("Loaded:" @ MutString);
 	}
@@ -112,7 +112,7 @@ private function LoadServerActors()
 	local String       ActorString;
 	local class<Actor> ActorClass;
 	local Actor        ServerActor;
-	
+
 	foreach ServerActors(ActorString)
 	{
 		ActorClass = class<Actor>(DynamicLoadObject(ActorString, class'Class'));
@@ -121,14 +121,14 @@ private function LoadServerActors()
 			`Log_Error("Can't load server actor:" @ ActorString);
 			continue;
 		}
-		
+
 		ServerActor = WorldInfo.Spawn(ActorClass);
 		if (ServerActor == None)
 		{
 			`Log_Error("Can't spawn:" @ ActorString);
 			continue;
 		}
-		
+
 		ActiveServerActors.AddItem(ServerActor);
 		`Log_Info("Loaded:" @ ActorString);
 	}
@@ -139,15 +139,15 @@ private function RestoreServerActors()
 	local GameEngine GameEngine;
 	local String     ActorString;
 	local int        PrevServerActorsCount;
-	
+
 	GameEngine = GameEngine(Class'Engine'.static.GetEngine());
-	
+
 	if (GameEngine == None)
 	{
 		`Log_Error("GameEngine is None! Can't restore ServerActors!");
 		return;
 	}
-	
+
 	PrevServerActorsCount = GameEngine.ServerActors.Length;
 	foreach ServerActors(ActorString)
 	{
@@ -156,7 +156,7 @@ private function RestoreServerActors()
 			GameEngine.ServerActors.AddItem(ActorString);
 		}
 	}
-	
+
 	if (GameEngine.ServerActors.Length != PrevServerActorsCount)
 	{
 		GameEngine.SaveConfig();
@@ -166,29 +166,29 @@ private function RestoreServerActors()
 public static function bool AddServerActor(String ServerActor)
 {
 	local class<Actor> ActorClass;
-	
+
 	if (default.SystemServerActors.Find(ServerActor) != INDEX_NONE)
 	{
 		return false;
 	}
-	
+
 	ActorClass = class<Actor>(DynamicLoadObject(ServerActor, class'Class'));
-	
+
 	if (ActorClass == None)
 	{
 		return false;
 	}
-	
+
 	if (ClassIsChildOf(ActorClass, class'Mutator'))
 	{
 		return false;
 	}
-	
+
 	if (default.ServerActors.Find(ServerActor) == INDEX_NONE)
 	{
 		default.ServerActors.AddItem(ServerActor);
 	}
-	
+
 	return true;
 }
 
@@ -202,7 +202,7 @@ public static function bool AddMutator(String MutString)
 		}
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -236,16 +236,16 @@ public static function String GetName(optional Object O)
 public static function String GetMutName(class<Mutator> CMut)
 {
 	if (CMut == None) return "";
-	
+
 	return CMut.GetPackageName() $ "." $ String(CMut);
 }
 
 public function PostLogin(PlayerController C)
 {
 	local Actor A;
-	
+
 	`Log_Trace();
-	
+
 	if (C != None)
 	{
 		foreach ActiveMutators(A)
@@ -253,7 +253,7 @@ public function PostLogin(PlayerController C)
 			A.GetTargetLocation(C, false);
 		}
 	}
-	
+
 	Super.PostLogin(C);
 }
 
@@ -261,9 +261,9 @@ public function OnClientConnectionClose(Player ClientConnection)
 {
 	local Controller C;
 	local Actor      A;
-	
+
 	`Log_Trace();
-	
+
 	C = ClientConnection.Actor;
 	if (C != None)
 	{
@@ -272,7 +272,7 @@ public function OnClientConnectionClose(Player ClientConnection)
 			A.GetTargetLocation(C, true);
 		}
 	}
-	
+
 	Super.OnClientConnectionClose(ClientConnection);
 }
 
@@ -283,7 +283,7 @@ public static function E_LogLevel GetLogLevel()
 		default.LogLevel = LL_Info;
 		StaticSaveConfig();
 	}
-	
+
 	return default.LogLevel;
 }
 
@@ -291,9 +291,9 @@ private static function class<Actor> GetMutReplacement(class<Mutator> MutClass)
 {
 	local int    Index;
 	local String Replacement;
-	
+
 	if (MutClass == None) return None;
-	
+
 	Index = default.CustomMutReplacements.Find('Mutator', GetMutName(MutClass));
 	if (Index != INDEX_NONE)
 	{
@@ -307,7 +307,7 @@ private static function class<Actor> GetMutReplacement(class<Mutator> MutClass)
 	{
 		Replacement = MutClass.GetPackageName() $ "." $ MutClass.static.GetLocalString();
 	}
-	
+
 	return class<Actor>(DynamicLoadObject(Replacement, class'Class'));
 }
 
@@ -326,6 +326,6 @@ defaultproperties
 		Mutator="UnofficialKFPatch.UKFPMutatorNW",
 		Replacement="UnofficialKFPatch.UKFPReplicationInfo"
 	)})
-	
+
 	SystemServerActors.Add("IpDrv.WebServer")
 }
