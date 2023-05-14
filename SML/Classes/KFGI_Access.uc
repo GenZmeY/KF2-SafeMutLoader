@@ -7,5 +7,5 @@ public function bool IsRankedGame()
 
 defaultproperties
 {
-	
+
 }

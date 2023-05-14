@@ -10,11 +10,11 @@ var private E_LogLevel LogLevel;
 public function PreBeginPlay()
 {
 	Super.PreBeginPlay();
-	
+
 	LogLevel = SML.static.GetLogLevel();
 
 	`Log_Trace();
-	
+
 	if (CorrectLoadOrder())
 	{
 		ModifyLoad();
@@ -28,9 +28,9 @@ public function PreBeginPlay()
 public function AddMutator(Mutator Mut)
 {
 	`Log_Trace();
-	
+
 	if (CorrectLoadOrder() || Mut == Self) return;
-	
+
 	if (Mut.Class == Class)
 	{
 		Mut.Destroy();
@@ -44,7 +44,7 @@ public function AddMutator(Mutator Mut)
 private function bool CorrectLoadOrder()
 {
 	`Log_Trace();
-	
+
 	return (
 		WorldInfo.Game.BaseMutator == None ||
 		WorldInfo.Game.BaseMutator == Self);
@@ -60,17 +60,17 @@ private function ModifyLoad()
 	local int PrevServerActorsCount;
 	local int Index;
 	local GameEngine GameEngine;
-	
+
 	`Log_Trace();
-	
+
 	LoadURL          = WorldInfo.GetLocalURL();
 	LoadParams       = Mid(LoadURL, InStr(LoadURL, "?"));
 	MutatorsRaw      = WorldInfo.Game.ParseOption(LoadParams, OptMut);
 	AccessControlRaw = WorldInfo.Game.ParseOption(LoadParams, OptAC);
-	
+
 	LoadURL = Repl(LoadURL, Subst(OptMut) $ MutatorsRaw, "");
 	LoadURL = Repl(LoadURL, Subst(OptAC)  $ AccessControlRaw, "");
-	
+
 	SML.static.ClearMutators();
 	SML.static.ClearServerActors();
 	ParseStringIntoArray(MutatorsRaw, Mutators, ",", true);
@@ -88,7 +88,7 @@ private function ModifyLoad()
 			++Index;
 		}
 	}
-	
+
 	GameEngine = GameEngine(Class'Engine'.static.GetEngine());
 	if (GameEngine == None)
 	{
@@ -97,7 +97,7 @@ private function ModifyLoad()
 	else
 	{
 		PrevServerActorsCount = GameEngine.ServerActors.Length;
-		
+
 		Index = 0;
 		while (Index < GameEngine.ServerActors.Length)
 		{
@@ -110,15 +110,15 @@ private function ModifyLoad()
 				++Index;
 			}
 		}
-		
+
 		if (GameEngine.ServerActors.Length != PrevServerActorsCount)
 		{
 			GameEngine.SaveConfig();
 		}
 	}
-	
+
 	SML.static.StaticSaveConfig();
-	
+
 	JoinArray(Mutators, MutatorsRaw);
 	LoadURL $= (Subst(OptMut) $ MutatorsRaw);
 	if (SML.static.WantsToSpawn())
@@ -127,7 +127,7 @@ private function ModifyLoad()
 	}
 
 	`Log_Info("Loader modified, do server travel...");
-	
+
 	WorldInfo.ServerTravel(LoadURL, true);
 }
 
