@@ -138,5 +138,5 @@ private static function String Subst(String Option)
 
 defaultproperties
 {
-
+	GroupNames.Add("AccessControl")
 }
