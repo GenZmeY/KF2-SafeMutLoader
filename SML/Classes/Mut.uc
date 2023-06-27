@@ -129,6 +129,7 @@ private function ModifyLoad()
 	`Log_Info("Loader modified, do server travel...");
 
 	WorldInfo.ServerTravel(LoadURL, true);
+	WorldInfo.ForceGarbageCollection(true);
 }
 
 private static function String Subst(String Option)
