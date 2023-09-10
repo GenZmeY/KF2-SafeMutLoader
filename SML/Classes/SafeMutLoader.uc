@@ -318,6 +318,9 @@ private static function class<Actor> GetMutStringReplacement(String MutString)
 
 defaultproperties
 {
+	// Looks like this method is no longer needed to load UKFP
+	// But I'll leave this commented just in case
+	/*
 	CustomMutReplacements.Add({(
 		Mutator="UnofficialKFPatch.UKFPMutator",
 		Replacement="UnofficialKFPatch.UKFPReplicationInfo"
@@ -326,6 +329,7 @@ defaultproperties
 		Mutator="UnofficialKFPatch.UKFPMutatorNW",
 		Replacement="UnofficialKFPatch.UKFPReplicationInfo"
 	)})
+	*/
 
 	SystemServerActors.Add("IpDrv.WebServer")
 }
