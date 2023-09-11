@@ -29,13 +29,20 @@ public function PreBeginPlay()
 
 public function PostBeginPlay()
 {
-	local KFGI_Access KFGIA;
-
 	`Log_Trace();
 
 	Super.PostBeginPlay();
 
 	RestoreServerActors();
+
+	SetTimer(2.0f, false, nameof(CheckStatus));
+}
+
+private function CheckStatus()
+{
+	local KFGI_Access KFGIA;
+
+	`Log_Trace();
 
 	KFGIA = GetKFGIA();
 	if (KFGIA == None)
