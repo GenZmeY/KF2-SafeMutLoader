@@ -42,6 +42,7 @@ Since KF2 [v1133](https://wiki.killingfloor2.com/index.php?title=Update_1133_(Ki
 🟢 [Looted Trader Inventory](https://steamcommunity.com/sharedfiles/filedetails/?id=2864857909)  
 🟡 [StartWave](https://github.com/GenZmeY/KF2-StartWave)  
 `mutate startwave X` command not working.  
+🟢 [True Random Boss](https://steamcommunity.com/sharedfiles/filedetails/?id=3047331564)  
 🟢 [Unofficial Killing Floor 2 Patch](https://steamcommunity.com/sharedfiles/filedetails/?id=2875147606)  
 🟢 [Yet Another Scoreboard](https://steamcommunity.com/sharedfiles/filedetails/?id=2521826524)  
 🟡 [Zed Spawner](https://steamcommunity.com/sharedfiles/filedetails/?id=2811290931)  
