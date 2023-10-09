@@ -34,6 +34,7 @@ However, [AccessPlus](https://forums.tripwireinteractive.com/index.php?threads/u
 ## Compatible mutators
 🟢 Any whitelisted mutators  
 🟢 [Admin Auto Login](https://steamcommunity.com/sharedfiles/filedetails/?id=2848836389)  
+🟢 [AmmoMulti](https://steamcommunity.com/sharedfiles/filedetails/?id=3026449204)  
 🟢 [Controlled Vote Collector](https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899)  
 🟡 [Custom Trader Inventory](https://steamcommunity.com/sharedfiles/filedetails/?id=2830826239)  
 Using `UnlockDLC=ReplaceFilter` will unrank the server when someone buys DLC weapons. Use `UnlockDLC=ReplaceWeapons` to get around this.  
@@ -44,6 +45,7 @@ Since KF2 [v1133](https://wiki.killingfloor2.com/index.php?title=Update_1133_(Ki
 `mutate startwave X` command not working.  
 🟢 [True Random Boss](https://steamcommunity.com/sharedfiles/filedetails/?id=3047331564)  
 🟢 [Unofficial Killing Floor 2 Patch](https://steamcommunity.com/sharedfiles/filedetails/?id=2875147606)  
+🟢 [WorkshopTool](https://steamcommunity.com/sharedfiles/filedetails/?id=3047217103)  
 🟢 [Yet Another Scoreboard](https://steamcommunity.com/sharedfiles/filedetails/?id=2521826524)  
 🟡 [Zed Spawner](https://steamcommunity.com/sharedfiles/filedetails/?id=2811290931)  
 Since KF2 [v1133](https://wiki.killingfloor2.com/index.php?title=Update_1133_(Killing_Floor_2)) zed preload causes the server to unrank for some reason. Disable it in ZedSpawner settings (`bPreloadContentServer=False`) to stay ranked.  
