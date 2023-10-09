@@ -17,26 +17,7 @@
 ⚠️ SML is incompatible with [url=https://github.com/th3-z/kf2-acpp]AccessPlus[/url] and other mods based on it. If you need something from there, implement it as an SML compatible mutator using [url=https://github.com/GenZmeY/KF2-SafeMutLoader/blob/master/DEV.md]developer guide[/url].
 
 [h1]Compatible mutators[/h1]
-🟢 Any whitelisted mutators
-🟢 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2848836389]Admin Auto Login[/url]
-🟢 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899]Controlled Vote Collector[/url]
-🟡 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2830826239]Custom Trader Inventory[/url]
-[list]
-[*]Purchasing a DLC weapon will unrank the server if currently there is no player with the purchased DLC. This can be bypassed by replacing all DLC weapons with their clones.
-[*]Since [url=https://wiki.killingfloor2.com/index.php?title=Update_1133_(Killing_Floor_2)]KF2 v1133[/url] the content preload causes the server to unrank for some reason. Disable it in CTI settings ([b]bPreloadContent=False[/b]) to stay ranked.
-[/list]
-🟢 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2891475864]Discord Link [Edited][/url]
-🟢 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2864857909]Looted Trader Inventory[/url]
-🟡 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2875147606]Unofficial Killing Floor 2 Patch[/url]
-[list]
-[*]Settings are not available (config and start parameters are ignored), patch will work with default settings
-[/list]
-🟢 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2521826524]Yet Another Scoreboard[/url]
-🟡 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2811290931]Zed Spawner[/url]
-[list]
-[*]Since [url=https://wiki.killingfloor2.com/index.php?title=Update_1133_(Killing_Floor_2)]KF2 v1133[/url] zed preload causes the server to unrank for some reason. Disable it in ZedSpawner settings ([b]bPreloadContentServer=False[/b]) to stay ranked.
-[/list]
-
+https://github.com/GenZmeY/KF2-SafeMutLoader#compatible-mutators
 
 [h1]Sources[/h1]
 [url=https://github.com/GenZmeY/KF2-SafeMutLoader]https://github.com/GenZmeY/KF2-SafeMutLoader[/url] [b](GNU GPLv3)[/b]
