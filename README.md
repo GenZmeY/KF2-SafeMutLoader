@@ -40,6 +40,7 @@ However, [AccessPlus](https://forums.tripwireinteractive.com/index.php?threads/u
 Using `UnlockDLC=ReplaceFilter` will unrank the server when someone buys DLC weapons. Use `UnlockDLC=ReplaceWeapons` to get around this.  
 Since KF2 [v1133](https://wiki.killingfloor2.com/index.php?title=Update_1133_(Killing_Floor_2)) the content preload causes the server to unrank for some reason. Disable it in CTI settings (`bPreloadContent=False`) to stay ranked.  
 🟢 [Discord Link [Edited]](https://steamcommunity.com/sharedfiles/filedetails/?id=2891475864)  
+🟢 [FriendlyHUD](https://steamcommunity.com/sharedfiles/filedetails/?id=1819268190)  
 🟢 [Looted Trader Inventory](https://steamcommunity.com/sharedfiles/filedetails/?id=2864857909)  
 🟡 [StartWave](https://github.com/GenZmeY/KF2-StartWave)  
 `mutate startwave X` command not working.  
