@@ -21,7 +21,7 @@ However, [AccessPlus](https://forums.tripwireinteractive.com/index.php?threads/u
 * **with workshop:** Use the [instructions below](https://github.com/GenZmeY/KF2-SafeMutLoader#build--upload) to build the SML and upload it to your workshop, then subscribe your server to SML  
 2. Add `SML.Mut` **first** to your list of mutators, example:  
 ```text
-?Mutator=SML.Mut,AAL.AALMut,FriendlyHUD.FriendlyHUDMutator,YAS.YASMut,CTI.CTIMut,CVC.CVCMut,ZedSpawner.ZedSpawnerMut
+?Mutator=SML.Mut,FriendlyHUD.FriendlyHUDMutator,YAS.YASMut,CTI.CTIMut,CVC.CVCMut,AAL.AALMut
 ```
 (add/remove **compatible** mutators you need)  
 
