@@ -8,12 +8,9 @@
 ## Description
 Use non-whitelisted mutators and stay ranked.  
 
-## Disclaimer
-**SML only uses KF2 and UnrealScript features, it doesn't change game executables or RAM or anything like that, so it's not a hack and it doesn't violate [Killing Floor 2 EULA](https://store.steampowered.com/eula/232090_eula_0).**  
-
-However, [AccessPlus](https://forums.tripwireinteractive.com/index.php?threads/utility-admin-access-plus-manager.118740) is also not a hack for the same reason, but it is constantly banned in the steam workshop. Why? I dont know.  
-
-**So use this at your own risk!**  
+## Legal
+SafeMutLoader is legal and does not violate the [KF2 EULA](https://store.steampowered.com/eula/232090_eula_0). Here's why in detail: [LEGAL.md](LEGAL.md).  
+However, for some reason SML is getting banned in the steam workshop, so **use it at your own risk**.  
 
 ## Usage (server only)
 1. Add SML to your server. There are two ways:  
