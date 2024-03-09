@@ -18,7 +18,7 @@ However, for some reason SML is getting banned in the steam workshop, so **use i
 * **with workshop:** Use the [instructions below](https://github.com/GenZmeY/KF2-SafeMutLoader#build--upload) to build the SML and upload it to your workshop, then subscribe your server to SML  
 2. Add `SML.Mut` **first** to your list of mutators, example:  
 ```text
-?Mutator=SML.Mut,FriendlyHUD.FriendlyHUDMutator,YAS.YASMut,CTI.CTIMut,CVC.CVCMut,AAL.AALMut
+?Mutator=SML.Mut,FriendlyHUD.FriendlyHUDMutator,YAS.Mut,CTI.Mut,CVC.Mut,AAL.Mut
 ```
 (add/remove **compatible** mutators you need)  
 
