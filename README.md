@@ -42,7 +42,8 @@ Since KF2 [v1133](https://wiki.killingfloor2.com/index.php?title=Update_1133_(Ki
 🟡 [StartWave](https://github.com/GenZmeY/KF2-StartWave)  
 `mutate startwave X` command not working.  
 🟢 [True Random Boss](https://steamcommunity.com/sharedfiles/filedetails/?id=3047331564)  
-🟢 [Unofficial Killing Floor 2 Patch](https://steamcommunity.com/sharedfiles/filedetails/?id=2875147606)  
+🟡 [Unofficial Killing Floor 2 Patch](https://steamcommunity.com/sharedfiles/filedetails/?id=2875147606)  
+Should work, but no guarantees. Use at your own risk.  
 🟢 [WorkshopTool](https://steamcommunity.com/sharedfiles/filedetails/?id=3047217103)  
 🟢 [Yet Another Scoreboard](https://steamcommunity.com/sharedfiles/filedetails/?id=2521826524)  
 🟡 [Zed Spawner](https://steamcommunity.com/sharedfiles/filedetails/?id=2811290931)  
