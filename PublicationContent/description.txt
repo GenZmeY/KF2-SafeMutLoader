@@ -1,23 +1,43 @@
-[h1][b]Use non-whitelisted mutators and stay ranked[/b][/h1]
+[h1]📋 Description[/h1]
+Use non-whitelisted mutators and stay ranked.
 
-[h1]Usage (server only)[/h1]
+[h1]⚖️ Legal[/h1]
+Safe Mut Loader is legal and does not violate the [url=https://store.steampowered.com/eula/232090_eula_0]KF2 EULA[/url]. Here's why in detail:
+https://github.com/GenZmeY/KF2-SafeMutLoader/blob/master/LEGAL.md
+
+However, for some reason Safe Mut Loader is getting banned in the steam workshop, so [b]use it at your own risk[/b].
+
+[h1]🖥️ Usage (server only)[/h1]
+[b]Note:[/b] [i]If this is unclear, first read: [url=https://wiki.killingfloor2.com/index.php?title=Dedicated_Server_(Killing_Floor_2)][u]Dedicated Server Guide (KF2 wiki)[/u][/url][/i]
 [olist]
-[*]Subscribe your server to this.
-[*]Add [b]SML.Mut[/b] [u]first[/u] to your list of mutators, example:
+[*] Open [b]PCServer-KFEngine.ini[/b] / [b]LinuxServer-KFEngine.ini[/b].
+[*] Find [b][IpDrv.TcpNetDriver][/b] section and ensure line exists (add if missing):
+[code]DownloadManagers=OnlineSubsystemSteamworks.SteamWorkshopDownload[/code]
+(If there are several [b]DownloadManagers[/b] then the line above should be the first)
+[*] Add the following string to the [b][OnlineSubsystemSteamworks.KFWorkshopSteamworks][/b] section (create one if it doesn't exist):
+[code]ServerSubscribedWorkshopItems=<workshop_id>[/code]
+(replace [b]<workshop_id>[/b] with your SML workshop item id)
+[*] Start server and wait for mutator download.
+[*] When the download is complete, stop the server.
+[*] Add [b]SML.Mut[/b] [u]first[/u] to your list of mutators, example:
 [code]
-?Mutator=SML.Mut,UnofficialKFPatch.UKFPMutator,AAL.AALMut,DiscordMessage.DMMutator,YAS.YASMut,CTI.CTIMut,CVC.CVCMut,ZedSpawner.ZedSpawnerMut
+?Mutator=SML.Mut,FriendlyHUD.FriendlyHUDMutator,YAS.Mut,CTI.Mut,CVC.Mut,AAL.Mut
 [/code]
 (add/remove [b]compatible[/b] mutators you need)
+[*] Start the server.
 [/olist]
 
-⚠️ Doesn't work in single player
-⚠️ SML must be first in the mutators list or it won't work.
-⚠️ SML only has an effect when [b]compatible[/b] mutators are used (the list below). If you use incompatible mutators you will lose ranked status.
-⚠️ SML is a server-side mutator, clients never download it. Therefore, no one will know about you using SML if you don’t tell yourself (or if you share with the whole world the BrewedPC folder where you put the SML, lol).
-⚠️ SML is incompatible with [url=https://github.com/th3-z/kf2-acpp]AccessPlus[/url] and other mods based on it. If you need something from there, implement it as an SML compatible mutator using [url=https://github.com/GenZmeY/KF2-SafeMutLoader/blob/master/DEV.md]developer guide[/url].
+[h1]⚠️ Important information:[/h1]
+[list]
+[*] Doesn't work in single player.
+[*] SML must be first in the mutators list or it won't work.
+[*] SML only has an effect when [b]compatible[/b] mutators are used. If you use incompatible mutators you will lose ranked status.
+[*] SML is a server-side mutator, clients never download it. No one will know about you using SML if you don’t tell yourself.
+[*] SML is incompatible with [url=https://forums.tripwireinteractive.com/index.php?threads/utility-admin-access-plus-manager.118740/]AccessPlus[/url] and other mods based on it. If you need something from there, implement it as an SML compatible mutator using [url=https://github.com/GenZmeY/KF2-SafeMutLoader/blob/master/DEV.md]developer guide[/url].
+[/list]
 
-[h1]Compatible mutators[/h1]
-https://github.com/GenZmeY/KF2-SafeMutLoader#compatible-mutators
+[h1]🟢 Compatible mutators[/h1]
+https://github.com/GenZmeY/KF2-SafeMutLoader/blob/master/COMPATIBLE.md
 
-[h1]Sources[/h1]
-[url=https://github.com/GenZmeY/KF2-SafeMutLoader]https://github.com/GenZmeY/KF2-SafeMutLoader[/url] [b](GNU GPLv3)[/b]
+[h1]📜 Sources[/h1]
+https://github.com/GenZmeY/KF2-SafeMutLoader [b](GPL-3.0-or-later)[/b]
